@@ -15,6 +15,8 @@ function displayMedicines(medicines) {
         container.appendChild(medDiv);
     });
 }*/
+
+/** 
 fetch("http://localhost:8000/medicines")
     .then(res => {
         return res.json();
@@ -28,3 +30,18 @@ fetch("http://localhost:8000/medicines")
         });
     })
     .catch(error => console.log(error));
+*/
+
+
+fetch("http://127.0.0.1:8000/medicines")
+//.then(res=> console.log(result))
+.then(response => response.json())
+.then(res =>{
+    const data = res.medicines;
+    let rows = '';
+    data.forEach(medicine =>(
+        rows += `<tr> <td> ${medicine.name}</td><td> ${medicine.price}</td></tr>`
+    ))
+    document.getElementById('tableRows').innerHTML = rows;
+})
+.catch(error => console.log(error));
